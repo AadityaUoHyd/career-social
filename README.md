@@ -158,6 +158,21 @@ See the [LICENSE](LICENSE) file for details.
 
 ---
 
+## Pending Task
+- Add like,commenting,share feature
+- Add follow/unfollow feature
+- Add file upload (images, videos, documents)
+- Add bookmarking post
+- Add notification feature
+- Add subscription plan with razorpay payment gateway
+- Add job posting & searching feature
+- Add profile edit feature
+- Add Email verification, forgot/reset password
+- Add 'Who viewed your profile', 'Views of your post'
+- Add newsletters
+- Add message chats
+- Create your resume link
+
 ## Acknowledgements
 
 * [Next.js](https://nextjs.org/)

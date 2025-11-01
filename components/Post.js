@@ -49,21 +49,21 @@ function Post({ post, modalPost }) {
           <h6 className="font-medium hover:text-blue-500 hover:underline">
             {post.username}
           </h6>
-          <p className="text-sm dark:text-white/75 opacity-80">{post.email}</p>
+          
           <TimeAgo
             datetime={post.createdAt}
             className="text-xs dark:text-white/75 opacity-80"
           />
         </div>
         {modalPost ? (
-          <IconButton onClick={() => setModalOpen(false)}>
-            <CloseRoundedIcon className="dark:text-white/75 h-7 w-7" />
-          </IconButton>
-        ) : (
-          <IconButton>
-            <MoreHorizRoundedIcon className="dark:text-white/75 h-7 w-7" />
-          </IconButton>
-        )}
+  <IconButton onClick={closeModal}>
+    <CloseRoundedIcon className="dark:text-white/75 h-7 w-7" />
+  </IconButton>
+) : (
+  <IconButton>
+    <MoreHorizRoundedIcon className="dark:text-white/75 h-7 w-7" />
+  </IconButton>
+)}
       </div>
 
       {post.input && (

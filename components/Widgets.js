@@ -39,10 +39,17 @@ const suggestedPeople = [
   },
   {
     id: 2,
-    name: "Neha Gupta",
+    name: "Nehap Curie",
     title: "Data Scientist",
     company: "Data Insights Co",
     image: "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  {
+    id: 3,
+    name: "Mohit Saha",
+    title: "Business Analyst",
+    company: "Capgemini",
+    image: "https://randomuser.me/api/portraits/men/44.jpg"
   }
 ];
 

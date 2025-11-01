@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Image from "next/image";
 import Header from "../components/Header";
 
 export default function People() {
@@ -87,11 +88,15 @@ export default function People() {
               className="bg-white dark:bg-[#252A2E] rounded-lg shadow-sm p-6 hover:shadow-md transition-all duration-300"
             >
               <div className="flex items-center space-x-4">
-                <img
-                  className="h-14 w-14 rounded-full object-cover"
-                  src={person.image}
-                  alt={person.name}
-                />
+                <div className="relative h-14 w-14">
+                  <Image
+                    src={person.image}
+                    alt={person.name}
+                    className="rounded-full object-cover"
+                    fill
+                    sizes="56px"
+                  />
+                </div>
                 <div>
                   <h3 className="font-medium text-gray-900 dark:text-white">
                     {person.name}

@@ -44,7 +44,7 @@ function Feed({ posts: initialPosts }) {
     } else if (!useSSRPosts || !initialPosts?.length) {
       fetchPosts();
     }
-  }, [useSSRPosts, initialPosts, fetchPosts]);
+  }, [useSSRPosts, initialPosts, fetchPosts, setRealtimePosts]);
 
   return (
     <div className="space-y-6 pb-24 max-w-lg">

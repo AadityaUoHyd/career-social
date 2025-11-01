@@ -37,10 +37,6 @@ function Input() {
           <h4 className="opacity-80 group-hover:opacity-100">Video</h4>
         </button>
         <button className="inputButton group">
-          <BusinessCenterIcon className="text-blue-300" />
-          <h4 className="opacity-80 group-hover:opacity-100">Job</h4>
-        </button>
-        <button className="inputButton group">
           <ArticleIcon className="text-red-400" />
           <h4 className="opacity-80 group-hover:opacity-100 whitespace-nowrap">
             Write Article

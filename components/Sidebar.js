@@ -1,7 +1,6 @@
 import { Avatar } from "@mui/material";
 import Image from "next/image";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 import Link from "next/link";
@@ -14,7 +13,7 @@ function Sidebar() {
     <div className="space-y-2 min-w-max max-w-lg">
       {/* Top Section */}
       <div className="bg-white dark:bg-[#1D2226] rounded-lg overflow-hidden relative flex flex-col items-center text-center border border-gray-300 dark:border-none">
-        <div className="relative w-full h-14">
+        <div className="relative w-full h-14 mb-4">
           <Image
             src="/sidebar.png"
             fill
@@ -24,20 +23,24 @@ function Sidebar() {
           />
         </div>
 
-        <Avatar
-          onClick={signOut}
-          src={session?.user?.image}
-          className="!h-14 !w-14 !border-2 !absolute !top-4 !cursor-pointer"
-        />
-
-        <div className="mt-5 py-4 space-x-0.5">
-          <h4 className="hover:underline decoration-purple-700 underline-offset-1 cursor-pointer">
-            {session?.user?.name}
-          </h4>
-          <p className="text-black/60 dark:text-white/75 text-sm">
-            {session?.user?.email}
-          </p>
+        <div className="w-full flex flex-col items-center">
+          <Link href="/profile" className="flex flex-col items-center w-full">
+            <Avatar
+              src={session?.user?.image}
+              className="!h-14 !w-14 !border-2 !cursor-pointer"
+            />
+            <div className="mt-2 py-2 text-center w-full">
+              <h4 className="hover:underline decoration-purple-700 underline-offset-1 cursor-pointer">
+                {session?.user?.name}
+              </h4>
+              <p className="text-black/60 dark:text-white/75 text-sm">
+                {session?.user?.email}
+              </p>
+            </div>
+          </Link>
         </div>
+
+        
 
         <div className="hidden md:inline text-left dark:text-white/75 text-sm w-full px-4 pb-3">
           <div className="font-medium sidebarButton space-y-0.5">
@@ -92,14 +95,12 @@ function Sidebar() {
             <p className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
               Groups
             </p>
-
-            <div className="flex items-center justify-between">
-              <p className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
-                Events
-              </p>
-              <AddRoundedIcon className="!h-5" />
-            </div>
-
+            <p className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
+              Events
+            </p>
+            <p className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
+              Pages
+            </p>
             <p className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
               Followed Hashtags
             </p>

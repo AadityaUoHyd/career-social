@@ -29,7 +29,7 @@ function useOutsideAlerter(ref, setShowDropdown) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
+  }, [ref, setShowDropdown]);
 }
 
 const spring = {
