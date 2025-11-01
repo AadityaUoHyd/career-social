@@ -10,6 +10,8 @@ import Head from "next/head";
 import { getProviders, signIn } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+
 
 function Home() {
   const { theme } = useTheme();
@@ -58,8 +60,8 @@ function Home() {
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-amber-700 dark:text-amber-500 leading-tight">
-              Welcome to Your <span className="text-amber-600 dark:text-amber-400">Professional</span> Community
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-blue-700 dark:text-blue-500 leading-tight">
+              Welcome to Your <span className="text-blue-600 dark:text-blue-400">Professional</span> Community
             </h1>
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300">
               Connect with professionals, discover job opportunities, and take your career to the next level.
@@ -67,7 +69,7 @@ function Home() {
             
             <div className="space-y-4 pt-4">
               <div className="flex items-center space-x-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                <WorkIcon className="text-amber-600 dark:text-amber-400" />
+                <WorkIcon className="text-blue-600 dark:text-blue-400" />
                 <div>
                   <h3 className="font-medium text-gray-900 dark:text-white">Find your next opportunity</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Browse thousands of job listings</p>
@@ -76,7 +78,7 @@ function Home() {
               </div>
               
               <div className="flex items-center space-x-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                <GroupIcon className="text-amber-600 dark:text-amber-400" />
+                <GroupIcon className="text-blue-600 dark:text-blue-400" />
                 <div>
                   <h3 className="font-medium text-gray-900 dark:text-white">Connect with professionals</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Expand your professional network</p>
@@ -85,7 +87,7 @@ function Home() {
               </div>
               
               <div className="flex items-center space-x-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                <SchoolIcon className="text-amber-600 dark:text-amber-400" />
+                <SchoolIcon className="text-blue-600 dark:text-blue-400" />
                 <div>
                   <h3 className="font-medium text-gray-900 dark:text-white">Learn new skills</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">Access professional development resources</p>
@@ -113,7 +115,7 @@ function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map((stat, index) => (
               <div key={index} className="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <p className="text-3xl font-bold text-amber-600 dark:text-amber-400">{stat.value}</p>
+                <p className="text-3xl font-bold text-blue-600 dark:text-blue-400">{stat.value}</p>
                 <p className="mt-2 text-gray-600 dark:text-gray-300">{stat.label}</p>
               </div>
             ))}
@@ -139,7 +141,7 @@ function Home() {
                 key={index}
                 className="pt-8 pb-10 px-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
               >
-                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 mx-auto">
+                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mx-auto">
                   {feature.icon}
                 </div>
                 <h3 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white text-center">
@@ -155,22 +157,37 @@ function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-amber-600 dark:bg-amber-800">
+      <section className="bg-blue-600 dark:bg-blue-800">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
             Ready to take the next step in your career?
           </h2>
-          <p className="mt-4 text-xl text-amber-100">
+          <p className="mt-4 text-xl text-blue-100">
             Join Career Social today and unlock new opportunities.
           </p>
-          <div className="mt-8 flex justify-center space-x-4">
-            <button className="px-8 py-3 border border-transparent text-base font-medium rounded-md text-amber-700 bg-white hover:bg-amber-50 md:py-4 md:text-lg md:px-10 transition-colors duration-200">
-              Sign Up
-            </button>
-            <button className="px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-amber-700 dark:hover:bg-amber-900 md:py-4 md:text-lg md:px-10 transition-colors duration-200">
-              Learn More
-            </button>
-          </div>
+          <div className="mt-8 flex justify-center gap-4">
+  <Link
+    href="/register"
+    className="inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 
+      text-base md:text-lg font-medium rounded-md 
+      text-amber-700 bg-white border border-transparent 
+      hover:bg-amber-50 dark:hover:bg-gray-100 transition-all duration-200"
+  >
+    Sign Up
+  </Link>
+
+  <Link
+    href="/login"
+    className="inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 
+      text-base md:text-lg font-medium rounded-md 
+      text-white bg-amber-600 border border-transparent 
+      hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-800 
+      transition-all duration-200"
+  >
+    Login
+  </Link>
+</div>
+
         </div>
       </section>
     </div>

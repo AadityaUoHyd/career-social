@@ -153,14 +153,9 @@ function Header() {
     ) : (
       // Logged out navigation
       <>
-        <div className="hidden sm:flex items-center space-x-4">
-          <HeaderLink Icon={ExploreIcon} text="Discover" feed active={router.pathname === '/'} href="/" />
-          <HeaderLink Icon={GroupIcon} text="People" feed active={router.pathname === '/people'} href="/people" />
-          <HeaderLink Icon={BusinessCenterIcon} text="Jobs" feed active={router.pathname === '/jobs'} href="/jobs" />
-        </div>
         <Link 
           href="/login"
-          className="text-blue-700 font-semibold rounded-full border border-blue-700 px-3 sm:px-5 py-1 sm:py-1.5 text-sm sm:text-base transition-all hover:border-2"
+          className="py-4 text-blue-700 font-semibold rounded-full border border-blue-700 px-3 sm:px-5 py-1 sm:py-1.5 text-sm sm:text-base transition-all hover:border-2"
         >
           Sign in
         </Link>
