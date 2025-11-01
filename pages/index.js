@@ -4,7 +4,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useStore } from "../store/store";
 import Feed from "../components/Feed";
-import Header from "../components/Header";
 import Modal from "../components/Modal";
 import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
@@ -22,15 +21,13 @@ export default function Home({ posts, articles }) {
   });
 
   return (
-    <div className="bg-[#F3F2EF] dark:bg-black dark:text-white h-screen overflow-y-scroll md:space-y-6">
+    <div className="bg-[#F3F2EF] dark:bg-black dark:text-white min-h-screen">
       <Head>
         <title>Feed | Career Social</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
-
-      <main className="flex justify-center gap-x-5 px-4 sm:px-12">
+      <main className="flex justify-center gap-x-5 px-4 sm:px-4 pt-2">
         <div className="flex flex-col md:flex-row gap-5">
           <Sidebar />
           <Feed posts={posts} />

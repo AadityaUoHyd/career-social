@@ -44,7 +44,7 @@ function Feed({ posts: initialPosts }) {
     } else if (!useSSRPosts || !initialPosts?.length) {
       fetchPosts();
     }
-  }, []); // Empty dependency array means this runs once on mount
+  }, [useSSRPosts, initialPosts, fetchPosts]);
 
   return (
     <div className="space-y-6 pb-24 max-w-lg">

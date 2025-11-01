@@ -3,22 +3,33 @@ import Image from "next/image";
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { signOut, useSession } from "next-auth/react";
+import { useState } from "react";
+import Link from "next/link";
 
 function Sidebar() {
   const { data: session } = useSession();
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <div className="space-y-2 min-w-max max-w-lg">
-      {/* Top */}
+      {/* Top Section */}
       <div className="bg-white dark:bg-[#1D2226] rounded-lg overflow-hidden relative flex flex-col items-center text-center border border-gray-300 dark:border-none">
         <div className="relative w-full h-14">
-          <Image src="/sidebar.png" layout="fill" priority alt="Sidebar background" />
+          <Image
+            src="/sidebar.png"
+            fill
+            priority
+            alt="Sidebar background"
+            className="object-cover"
+          />
         </div>
+
         <Avatar
           onClick={signOut}
           src={session?.user?.image}
           className="!h-14 !w-14 !border-2 !absolute !top-4 !cursor-pointer"
         />
+
         <div className="mt-5 py-4 space-x-0.5">
           <h4 className="hover:underline decoration-purple-700 underline-offset-1 cursor-pointer">
             {session?.user?.name}
@@ -28,7 +39,7 @@ function Sidebar() {
           </p>
         </div>
 
-        <div className="hidden md:inline text-left dark:text-white/75 text-sm">
+        <div className="hidden md:inline text-left dark:text-white/75 text-sm w-full px-4 pb-3">
           <div className="font-medium sidebarButton space-y-0.5">
             <div className="flex justify-between space-x-2">
               <h4>Who viewed your profile</h4>
@@ -40,32 +51,69 @@ function Sidebar() {
             </div>
           </div>
 
-          <div className="sidebarButton">
+          <div className="sidebarButton mt-2">
             <h4 className="leading-4 text-xs">
               Access exclusive tools & insights
             </h4>
-            <h4 className="dark:text-white font-medium">
-              <span className="w-3 h-3 bg-gradient-to-tr from-yellow-700 to-yellow-200 inline-block rounded-sm mr-1" />{" "}
-              Try Premium for free
-            </h4>
+            <Link href="/subscription">
+              <h4 className="dark:text-white font-medium hover:underline cursor-pointer">
+                <span className="w-3 h-3 bg-gradient-to-tr from-yellow-700 to-yellow-200 inline-block rounded-sm mr-1" />
+                Try Premium for free
+              </h4>
+            </Link>
           </div>
 
-          <div className="sidebarButton flex items-center space-x-1.5">
+          <div className="sidebarButton flex items-center space-x-1.5 mt-2">
             <BookmarkOutlinedIcon className="!-ml-1" />
             <h4 className="dark:text-white font-medium">My items</h4>
           </div>
         </div>
       </div>
-      {/* Bottom */}
-      <div className="hidden md:flex bg-white dark:bg-[#1D2226] text-black/70 dark:text-white/75 rounded-lg overflow-hidden flex-col space-y-2 pt-2.5 sticky top-20 border border-gray-300 dark:border-none">
-        <p className="sidebarLink">Groups</p>
-        <div className="flex items-center justify-between">
-          <p className="sidebarLink">Events</p>
-          <AddRoundedIcon className="!h-5" />
-        </div>
-        <p className="sidebarLink">Followed Hashtags</p>
-        <div className="sidebarButton text-center">
-          <h4 className="dark:text-white font-medium text-sm">Discover More</h4>
+
+      {/* Bottom Section */}
+      <div className="hidden md:flex bg-white dark:bg-[#1D2226] text-black/70 dark:text-white/75 rounded-lg overflow-hidden flex-col space-y-2 pt-2.5 sticky top-20 border border-gray-300 dark:border-none px-3 pb-3">
+        {/* Main Links */}
+        <Link href="/people" className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400">
+          People
+        </Link>
+        <Link href="/newsletters" className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400">
+          Newsletters
+        </Link>
+        <Link href="/jobs" className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400">
+          Jobs
+        </Link>
+        <Link href="/discover" className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400">
+          Discover
+        </Link>
+
+        {/* Toggleable Section */}
+        {showMore && (
+          <>
+            <p className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
+              Groups
+            </p>
+
+            <div className="flex items-center justify-between">
+              <p className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
+                Events
+              </p>
+              <AddRoundedIcon className="!h-5" />
+            </div>
+
+            <p className="sidebarLink hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
+              Followed Hashtags
+            </p>
+          </>
+        )}
+
+        {/* Discover More Toggle */}
+        <div
+          className="sidebarButton text-center cursor-pointer hover:bg-gray-100 dark:hover:bg-[#2a2f33] transition-colors"
+          onClick={() => setShowMore((prev) => !prev)}
+        >
+          <h4 className="dark:text-white font-medium text-sm">
+            {showMore ? "Show Less" : "Discover More"}
+          </h4>
         </div>
       </div>
     </div>
