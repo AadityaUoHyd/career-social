@@ -2,53 +2,177 @@ import Image from "next/image";
 import HeaderLink from "../components/HeaderLink";
 import ExploreIcon from "@mui/icons-material/Explore";
 import GroupIcon from "@mui/icons-material/Group";
-import OndemandVideoSharpIcon from "@mui/icons-material/OndemandVideoSharp";
-import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+import WorkIcon from "@mui/icons-material/Work";
+import SchoolIcon from "@mui/icons-material/School";
+import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import Head from "next/head";
 import { getProviders, signIn } from "next-auth/react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 function Home() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const stats = [
+    { value: "10,000+", label: "Job Openings" },
+    { value: "5,000+", label: "Companies Hiring" },
+    { value: "1M+", label: "Active Users" },
+    { value: "50+", label: "Industries" },
+  ];
+
+  const features = [
+    {
+      icon: <WorkIcon className="w-8 h-8" />,
+      title: "Find Your Dream Job",
+      description: "Discover thousands of job opportunities from top companies worldwide.",
+    },
+    {
+      icon: <ConnectWithoutContactIcon className="w-8 h-8" />,
+      title: "Grow Your Network",
+      description: "Connect with professionals and expand your professional circle.",
+    },
+    {
+      icon: <SchoolIcon className="w-8 h-8" />,
+      title: "Learn New Skills",
+      description: "Access courses and resources to enhance your career.",
+    },
+  ];
+
   return (
-    <div className="space-y-10 relative pt-16">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <Head>
-        <title>Career Social</title>
-        <meta name="description" content="Connect with professionals and grow your career" />
+        <title>Career Social - Connect, Learn, and Grow</title>
+        <meta name="description" content="Connect with professionals, find job opportunities, and grow your career" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
-      <main className="flex flex-col xl:flex-row items-center max-w-screen-lg mx-auto">
-        <div className="space-y-6 xl:space-y-10">
-          <h1 className="text-3xl md:text-5xl text-amber-800/80 max-w-xl !leading-snug pl-4 xl:pl-0">
-            Welcome to your professional community
-          </h1>
-          <div className="space-y-4">
-            <div className="intent">
-              <h2 className="text-xl">Search for a job</h2>
-              <ArrowForwardIosRoundedIcon className="text-gray-700" />
-            </div>
-            <div className="intent">
-              <h2 className="text-xl">Find a person you know</h2>
-              <ArrowForwardIosRoundedIcon className="text-gray-700" />
-            </div>
-            <div className="intent">
-              <h2 className="text-xl">Learn a new skill</h2>
-              <ArrowForwardIosRoundedIcon className="text-gray-700" />
+
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-amber-700 dark:text-amber-500 leading-tight">
+              Welcome to Your <span className="text-amber-600 dark:text-amber-400">Professional</span> Community
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300">
+              Connect with professionals, discover job opportunities, and take your career to the next level.
+            </p>
+            
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center space-x-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                <WorkIcon className="text-amber-600 dark:text-amber-400" />
+                <div>
+                  <h3 className="font-medium text-gray-900 dark:text-white">Find your next opportunity</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Browse thousands of job listings</p>
+                </div>
+                <ArrowForwardIosRoundedIcon className="text-gray-400 ml-auto" />
+              </div>
+              
+              <div className="flex items-center space-x-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                <GroupIcon className="text-amber-600 dark:text-amber-400" />
+                <div>
+                  <h3 className="font-medium text-gray-900 dark:text-white">Connect with professionals</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Expand your professional network</p>
+                </div>
+                <ArrowForwardIosRoundedIcon className="text-gray-400 ml-auto" />
+              </div>
+              
+              <div className="flex items-center space-x-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                <SchoolIcon className="text-amber-600 dark:text-amber-400" />
+                <div>
+                  <h3 className="font-medium text-gray-900 dark:text-white">Learn new skills</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Access professional development resources</p>
+                </div>
+                <ArrowForwardIosRoundedIcon className="text-gray-400 ml-auto" />
+              </div>
             </div>
           </div>
+          
+          <div className="relative h-[400px] lg:h-[600px]">
+            <Image
+              src={theme === 'dark' ? '/hero.png' : '/hero.png'}
+              alt="Career Social Hero"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
         </div>
+      </section>
 
-        <div className="relative xl:absolute w-80 h-80 xl:w-[650px] xl:h-[650px] top-14 right-5">
-          <Image 
-            src="/hero.png" 
-            fill 
-            priority 
-            alt="Career Social Hero" 
-            className="object-contain"
-            sizes="(max-width: 1280px) 20rem, 40.625rem"
-          />
+      {/* Stats Section */}
+      <section className="py-16 bg-white dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {stats.map((stat, index) => (
+              <div key={index} className="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <p className="text-3xl font-bold text-amber-600 dark:text-amber-400">{stat.value}</p>
+                <p className="mt-2 text-gray-600 dark:text-gray-300">{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+              Everything you need to grow your career
+            </h2>
+            <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
+              Join thousands of professionals who have advanced their careers with us
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="pt-8 pb-10 px-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 mx-auto">
+                  {feature.icon}
+                </div>
+                <h3 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white text-center">
+                  {feature.title}
+                </h3>
+                <p className="mt-3 text-base text-gray-600 dark:text-gray-400 text-center">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-amber-600 dark:bg-amber-800">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+            Ready to take the next step in your career?
+          </h2>
+          <p className="mt-4 text-xl text-amber-100">
+            Join Career Social today and unlock new opportunities.
+          </p>
+          <div className="mt-8 flex justify-center space-x-4">
+            <button className="px-8 py-3 border border-transparent text-base font-medium rounded-md text-amber-700 bg-white hover:bg-amber-50 md:py-4 md:text-lg md:px-10 transition-colors duration-200">
+              Sign Up
+            </button>
+            <button className="px-8 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-amber-700 dark:hover:bg-amber-900 md:py-4 md:text-lg md:px-10 transition-colors duration-200">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
